@@ -4,17 +4,40 @@ import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import java.awt.*;
 
+import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
+
 public class GUI {
-    public static void setGUI(){
+    private JSlider slider;
+    public JSlider getSlider(){
+        return slider;
+    }
+    //----------------------------------------------
+    private JButton btn;
+    public JButton getBtn() {
+        return btn;
+    }
+    //-----------------------------------------------
+    private JSpinner spin1;
+    public JSpinner getSpin1(){
+        return spin1;
+    }
+    //-------------------------------------------------
+    private JSpinner spin2;
+    public JSpinner getSpin2(){
+        return spin2;
+    }
+    //--------------------------------------------------
+    public GUI(){
         //create the window for the GUI
         JFrame win = new JFrame();
-        win.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        win.setDefaultCloseOperation(EXIT_ON_CLOSE);
         win.setSize(500,600);
 
         //set fonts for the different form elements
-        FontUIResource fontButton = new FontUIResource("Arial", Font.PLAIN, 30);
-        FontUIResource fontSpinner = new FontUIResource("Arial", Font.PLAIN, 20);
-        FontUIResource fontSlider = new FontUIResource("Arial", Font.BOLD, 18);
+        String fontName = "Arial";
+        FontUIResource fontButton = new FontUIResource(fontName, Font.PLAIN, 30);
+        FontUIResource fontSpinner = new FontUIResource(fontName, Font.PLAIN, 20);
+        FontUIResource fontSlider = new FontUIResource(fontName, Font.BOLD, 18);
 
         //create the general panel inside the window
         JPanel panel = new JPanel();
@@ -23,7 +46,7 @@ public class GUI {
         panel.setLayout(new GridLayout(8, 1, 80, 20));
 
         //create slider with the labels of the points.
-        JSlider slider = new JSlider(0,100,50);
+        slider = new JSlider(0,100,50);
         slider.setFont(fontSlider);
         slider.setMajorTickSpacing(10);
         slider.setPaintTicks(true);
@@ -35,15 +58,15 @@ public class GUI {
         spinnerPanel.setSize(300, 100);
 
         //create the first spinner
-        JSpinner spin1 = new JSpinner(new SpinnerNumberModel(1, 1, 10, 1));
+        spin1 = new JSpinner(new SpinnerNumberModel(1, 1, 10, 1));
         spin1.setFont(fontSpinner);
 
         //create the second spinner
-        JSpinner spin2 = new JSpinner(new SpinnerNumberModel(1, 1, 10, 1));
+        spin2 = new JSpinner(new SpinnerNumberModel(1, 1, 10, 1));
         spin2.setFont(fontSpinner);
 
         //create the "Start" button that runs two threads.
-        JButton btn = new JButton("Start");
+        btn = new JButton("Start");
         btn.setFont(fontButton);
 
         //place spinners inside their pannels
