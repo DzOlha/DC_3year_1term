@@ -3,6 +3,8 @@ package lab_1;
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import java.awt.*;
+import java.sql.Array;
+import java.util.ArrayList;
 
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
@@ -12,21 +14,14 @@ public class GUI {
         return slider;
     }
     //----------------------------------------------
-    private JButton btn;
-    public JButton getBtn() {
-        return btn;
+    //btns[0] = Start1, btns[1] = Start2, btns[2] = Stop1, btns[3] = Stop2
+    private JButton[] btns = new JButton[4];
+    public JButton[] getBtn() {
+        return btns;
     }
     //-----------------------------------------------
-    private JSpinner spin1;
-    public JSpinner getSpin1(){
-        return spin1;
-    }
-    //-------------------------------------------------
-    private JSpinner spin2;
-    public JSpinner getSpin2(){
-        return spin2;
-    }
-    //--------------------------------------------------
+    private JLabel criticalLabel;
+    public JLabel getCriticalLabel(){return criticalLabel; }
     public GUI(){
         //create the window for the GUI
         JFrame win = new JFrame();
@@ -52,31 +47,42 @@ public class GUI {
         slider.setPaintTicks(true);
         slider.setPaintLabels(true);
 
-        //create separate panel for two spinners
-        JPanel spinnerPanel = new JPanel();
-        spinnerPanel.setLayout(new GridLayout(1, 2, 50, 50));
-        spinnerPanel.setSize(300, 100);
+        //create panels for button groups
+        JPanel btn1 = new JPanel();
+        btn1.setLayout(new GridLayout(1, 2, 50, 50));
 
-        //create the first spinner
-        spin1 = new JSpinner(new SpinnerNumberModel(1, 1, 10, 1));
-        spin1.setFont(fontSpinner);
+        JPanel btn2 = new JPanel();
+        btn2.setLayout(new GridLayout(1, 2, 50, 50));
 
-        //create the second spinner
-        spin2 = new JSpinner(new SpinnerNumberModel(1, 1, 10, 1));
-        spin2.setFont(fontSpinner);
+        //create the "Start" and "Stop" buttons.
+        btns[0] = new JButton("Start 1");
+        btns[0].setFont(fontButton);
 
-        //create the "Start" button that runs two threads.
-        btn = new JButton("Start");
-        btn.setFont(fontButton);
+        btns[1] = new JButton("Start 2");
+        btns[1].setFont(fontButton);
 
-        //place spinners inside their pannels
-        spinnerPanel.add(spin1);
-        spinnerPanel.add(spin2);
+        btns[2] = new JButton("Stop 1");
+        btns[2].setFont(fontButton);
+
+        btns[3] = new JButton("Stop 2");
+        btns[3].setFont(fontButton);
+
+        //place buttons onto panels
+        btn1.add(btns[0]);
+        btn1.add(btns[2]);
+
+        btn2.add(btns[1]);
+        btn2.add(btns[3]);
+
+        //added mark for status of availability the critical section
+        criticalLabel = new JLabel("Critical section: FREE!");
+        criticalLabel.setFont(fontButton);
 
         //place slider + spinnerPanel + button inside the general panel space
+        panel.add(criticalLabel);
         panel.add(slider);
-        panel.add(spinnerPanel);
-        panel.add(btn);
+        panel.add(btn1);
+        panel.add(btn2);
 
         //place the general panel to the whole form window.
         win.setContentPane(panel);
