@@ -103,13 +103,6 @@ public class Queue extends QueueClassOperation{
         return n;
     }
     synchronized void putRowNumber(int n) {
-//        while(valueSet) {
-//            try {
-//                wait();
-//            } catch (InterruptedException e) {
-//                System.out.println("InterruptedException caught");
-//            }
-//        }
         if(!queueFilled){
             for(int i = 0; i < n; i++){
                 this.enqueue(i);
@@ -118,9 +111,5 @@ public class Queue extends QueueClassOperation{
             queueFilled = true;
             notify();
         }
-//        this.enqueue(n);
-//        valueSet = true;
-//        System.out.println("Put: " + n);
-//        notify();
     }
 }

@@ -10,9 +10,7 @@ public class Producer implements Runnable {
 
     @Override
     public void run() {
-        //for(int i = 0; i < 100; i++){
-            q.putRowNumber(q.getSize());
-        //}
+        q.putRowNumber(q.getSize());
         System.out.println("I am Producer and I completed putting values!");
     }
 }
