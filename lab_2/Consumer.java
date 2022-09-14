@@ -3,20 +3,29 @@ package lab_2;
 public class Consumer implements Runnable{
     private Queue q;
     private boolean[][] Forest;
-    public Consumer(Queue q, boolean[][] f){
+    public Consumer(Queue q, boolean[][] f, int i){
         this.q = q;
         this.Forest = f;
-        new Thread(this, "Consumer").start();
+        new Thread(this, "Consumer_"+i).start();
     }
     @Override
     public void run() {
         while(!Thread.currentThread().isInterrupted()){
             int row = q.getRowNumber();
-            for(int j = 0; j < 100; j++){
-                if(Forest[row][j] == true) {
-                    q.setFoundBear();
-                    System.out.println("Found Bear! Coordinates" + row + "; " + j);
-                    Thread.currentThread().interrupt();
+            int n = q.getSize();
+
+            //reach the end of the queue = > checked all parts of the forest
+            if(row == -1)
+                break;
+            //-----------------------------------------------------------------
+            System.out.println("I am " + Thread.currentThread().getName());
+            for(int j = 0; j < n; j++)
+            {
+                System.out.println("I am " + Thread.currentThread().getName() + " => Part = " + row + ". Step = " + j);
+                if(Forest[row][j] == true)
+                {
+                    System.out.println("\n-------------------------------Found Bear! Coordinates [" + row + "; " + j + "]\n");
+                    break;
                 }
             }
         }

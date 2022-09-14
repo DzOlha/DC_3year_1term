@@ -5,6 +5,9 @@ class QueueClassOperation
     protected int front;
     protected int rear;
     protected int capacity;
+    public int getSize(){return capacity;}
+    public void setSize(int size){this.capacity = size;}
+
     protected int count;
 
     public QueueClassOperation(int size)
@@ -20,13 +23,12 @@ class QueueClassOperation
     {
         if (isEmpty())
         {
-            System.out.println("Underflow\nProgram Terminated");
-            System.exit(-1);
+            return -1;
         }
 
         int x = arr[front];
 
-        System.out.println("Removing " + x);
+        //System.out.println("Removing " + x);
 
         front = (front + 1) % capacity;
         count--;
@@ -42,7 +44,7 @@ class QueueClassOperation
             System.exit(-1);
         }
 
-        System.out.println("Inserting " + item);
+        //System.out.println("Inserting " + item);
 
         rear = (rear + 1) % capacity;
         arr[rear] = item;
@@ -74,40 +76,51 @@ class QueueClassOperation
 
 public class Queue extends QueueClassOperation{
     private boolean foundBear = false;
-    private boolean valueSet = false;
+    private boolean valueSet = true;
+    private boolean queueFilled = false;
     public Queue(int size){
         super(size);
     }
     public boolean getFoundBear(){
         return foundBear;
     }
-    public void setFoundBear(){
+    public void setFoundBear(int x, int y){
         this.foundBear = true;
     }
     synchronized int getRowNumber() {
-        while (!valueSet)
+        while (!queueFilled){
             try {
                 wait();
             } catch (InterruptedException e) {
                 System.out.println("InterruptedException caught");
             }
+        }
         int n = this.dequeue();
-        System.out.println("Got: " + n);
-        valueSet = false;
-        notify();
+        if(n != -1) {
+            System.out.println("Got: " + n);
+        }
+        valueSet = true;
         return n;
     }
     synchronized void putRowNumber(int n) {
-        while(valueSet)
-            try {
-                wait();
-            } catch(InterruptedException e) {
-                System.out.println("InterruptedException caught");
+//        while(valueSet) {
+//            try {
+//                wait();
+//            } catch (InterruptedException e) {
+//                System.out.println("InterruptedException caught");
+//            }
+//        }
+        if(!queueFilled){
+            for(int i = 0; i < n; i++){
+                this.enqueue(i);
+                System.out.println("Put: " + i);
             }
-
-        this.enqueue(n);
-        valueSet = true;
-        System.out.println("Put: " + n);
-        notify();
+            queueFilled = true;
+            notify();
+        }
+//        this.enqueue(n);
+//        valueSet = true;
+//        System.out.println("Put: " + n);
+//        notify();
     }
 }
