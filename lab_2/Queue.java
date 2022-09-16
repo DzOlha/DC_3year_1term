@@ -76,7 +76,6 @@ class QueueClassOperation
 
 public class Queue extends QueueClassOperation{
     private boolean foundBear = false;
-    private boolean valueSet = true;
     private boolean queueFilled = false;
     public Queue(int size){
         super(size);
@@ -99,7 +98,6 @@ public class Queue extends QueueClassOperation{
         if(n != -1) {
             System.out.println("Got: " + n);
         }
-        valueSet = true;
         return n;
     }
     synchronized void putRowNumber(int n) {

@@ -2,9 +2,8 @@ package lab_2;
 
 public class Producer implements Runnable {
     private Queue q;
-    public Producer(Queue q, int size){
+    public Producer(Queue q){
         this.q = q;
-        this.q.setSize(size);
         new Thread(this, "Producer").start();
     }
 

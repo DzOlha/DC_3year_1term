@@ -19,9 +19,10 @@ public class Entry {
     }
     public static void main(String[] args) {
         int size = 10;
-        fillArray(2, 1, size);
+        fillArray(5, 8, size);
+
         Queue Q = new Queue(size);
-        new Producer(Q, size);
+        new Producer(Q);
 
         for(int i = 0; i < 6; i++){
             new Consumer(Q,forestArray, i);

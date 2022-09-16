@@ -28,6 +28,7 @@ public class Consumer implements Runnable{
                     break;
                 }
             }
+            Thread.currentThread().interrupt();
         }
     }
 }
