@@ -1,4 +1,6 @@
-package lab_2;
+package lab_2.part_1;
+
+import lab_2.part_1.Queue;
 
 public class Producer implements Runnable {
     private Queue q;

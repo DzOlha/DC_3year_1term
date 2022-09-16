@@ -1,6 +1,4 @@
-package lab_2;
-
-import java.sql.Array;
+package lab_2.part_1;
 
 public class Entry {
     private static boolean[][] forestArray;

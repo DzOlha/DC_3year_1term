@@ -1,4 +1,4 @@
-package lab_2;
+package lab_2.part_1;
 class QueueClassOperation
 {
     protected int[] arr;
