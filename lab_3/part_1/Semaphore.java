@@ -5,7 +5,7 @@ public class Semaphore {
     public Semaphore(){
         this.indicator = 1;
     }
-    public boolean isFree(){
+    public synchronized boolean isFree(){
         if(indicator == 1){
             return true;
         }
@@ -16,12 +16,19 @@ public class Semaphore {
             indicator = 0;
         } else{
             try {
+                System.out.println(Thread.currentThread().getName() + " was declined in permit! Waiting....");
                 wait();
+                getPermit();
             } catch (InterruptedException ex) {}
         }
     }
     public synchronized void getBackPermit(){
         indicator = 1;
-        notify();
+        System.out.println(Thread.currentThread().getName() + " return permit!\n");
+        try {
+            notify();
+        }catch (IllegalStateException ex) {
+            System.out.println("Error while notifying other bees!");
+        }
     }
 }

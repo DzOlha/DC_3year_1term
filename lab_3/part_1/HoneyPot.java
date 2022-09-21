@@ -36,12 +36,13 @@ class QueueClassOperation
         return x;
     }
 
-    public void enqueue(int item)
+    public boolean enqueue(int item)
     {
         if (isFull())
         {
-            System.out.println("Overflow\nProgram Terminated");
-            System.exit(-1);
+            return false;
+            //System.out.println("Overflow\nProgram Terminated");
+            //System.exit(-1);
         }
 
         //System.out.println("Inserting " + item);
@@ -49,6 +50,7 @@ class QueueClassOperation
         rear = (rear + 1) % capacity;
         arr[rear] = item;
         count++;
+        return true;
     }
 
     public int peek()
@@ -74,7 +76,7 @@ class QueueClassOperation
     }
 }
 public class HoneyPot extends QueueClassOperation{
-    private int fullPot = 0;
+    private int fullPot;
     public void setFullPot(int flag){this.fullPot = flag;}
     public int getFullPot(){return fullPot;}
     private Semaphore potSemaphore;
@@ -82,5 +84,16 @@ public class HoneyPot extends QueueClassOperation{
     public HoneyPot(int N, Semaphore sem) {
         super(N);
         this.potSemaphore = sem;
+        this.fullPot = 0;
+    }
+    public boolean checkState(){
+        synchronized (this){
+            if(this.isFull()){
+                System.out.println("--------------------POT IS FULL!!!!!!!!!!!!!------------------");
+                this.fullPot = 1;
+                return true;
+            }
+        }
+        return false;
     }
 }

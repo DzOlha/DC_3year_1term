@@ -8,7 +8,9 @@ public class BearConsumer implements Runnable{
     public void sleepBear(){
         while(pot.getFullPot() == 0) {
             try {
-                Thread.currentThread().sleep(1000);
+                wait();
+                //Thread.currentThread().sleep(2000);
+                System.out.println("BEAR sleep.......");
             }catch (InterruptedException e){}
         }
     }
@@ -16,14 +18,17 @@ public class BearConsumer implements Runnable{
     @Override
     public void run() {
         while(!Thread.currentThread().isInterrupted()){
-            this.sleepBear();
-            pot.getPotSemaphore().getPermit();
-            int tmp = 0;
-            while(tmp != -1) {
-                tmp = pot.dequeue();
+            //this.sleepBear();
+            if(pot.getFullPot() == 1){
+                pot.getPotSemaphore().getPermit();
+                int tmp = 0;
+                while(tmp != -1) {
+                    tmp = pot.dequeue();
+                }
+                pot.setFullPot(0);
+                System.out.println(Thread.currentThread().getName() + " ate all honey!");
+                pot.getPotSemaphore().getBackPermit();
             }
-            pot.setFullPot(0);
-            pot.getPotSemaphore().getBackPermit();
         }
     }
 }
