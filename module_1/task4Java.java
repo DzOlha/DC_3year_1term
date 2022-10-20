@@ -4,7 +4,7 @@ import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedDeque;
 import java.util.concurrent.Semaphore;
 
-public class task2Java {
+public class task4Java {
     public static void main(String[] args) {
         Operator op1 = new Operator(1);
         Operator op2 = new Operator(2);
