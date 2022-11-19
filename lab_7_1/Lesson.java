@@ -1,7 +1,7 @@
 package lab_7_1;
 
 public class Lesson {
-    public Integer code;
+    public final Integer code;
     public String name;
     public Integer isLec;
     public Lesson(Integer code, String name, Integer isLec) {
