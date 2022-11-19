@@ -1,0 +1,28 @@
+<?xml version = "1.0" encoding = "WINDOWS-1251"?>
+<WeekSchedule>
+    <WeekDay id="1" name="Monday">
+        <Lesson id="1" name="Distributed Computing" isLec = "0"/>
+        <Lesson id="2" name="Philosophy" isLec = "0"/>
+        <Lesson id="3" name="Distributed Computing" isLec = "1"/>
+    </WeekDay>
+    <WeekDay id="2" name="Tuesday">
+        <Lesson id="4" name="Scientific Image Of The World" isLec = "1"/>
+        <Lesson id="5" name="Modeling of Systems" isLec = "1"/>
+        <Lesson id="6" name="Philosophy" isLec = "1"/>
+    </WeekDay>
+    <WeekDay id="3" name="Wednesday">
+        <Lesson id="7" name="Scientific Image Of The World" isLec = "1"/>
+        <Lesson id="8" name="Operating Systems" isLec = "1"/>
+        <Lesson id="9" name="Numeric Methods" isLec = "1"/>
+    </WeekDay>
+    <WeekDay id="4" name="Thursday">
+        <Lesson id="10" name="Modeling of Systems" isLec = "0"/>
+        <Lesson id="11" name="Numeric Methods" isLec = "0"/>
+        <Lesson id="12" name="Ruby" isLec = "1"/>
+    </WeekDay>
+    <WeekDay id="5" name="Friday">
+        <Lesson id="13" name="Operating Systems" isLec = "0"/>
+        <Lesson id="14" name="OOP" isLec = "1"/>
+        <Lesson id="15" name="Ruby" isLec = "0"/>
+    </WeekDay>
+</WeekSchedule>
