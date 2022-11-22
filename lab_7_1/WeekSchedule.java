@@ -1,37 +1,16 @@
 package lab_7_1;
 
-import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import java.io.File;
-import java.io.IOException;
+import javax.xml.transform.TransformerException;
 import java.util.ArrayList;
 
 public class WeekSchedule {
-    private String sourceFileName;
     private ArrayList<WeekDay> days;
-    public void loadFromFile(){
-        DocumentBuilder db = null;
-        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        try {
-            db = dbf.newDocumentBuilder();
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        }
-        Document doc = null;
-        try {
-            doc = db.parse(new File(sourceFileName));
-        } catch (SAXException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Element root = doc.getDocumentElement();
+    public void loadFromFile(WorkWithXML xml){
+        //days = new ArrayList<>();
+        Element root = xml.loadRootFromXML();
         if (root.getTagName().equals("WeekSchedule"))
         {
             NodeList listWeekDays = root.getElementsByTagName("WeekDay");
@@ -57,10 +36,21 @@ public class WeekSchedule {
             }
         }
     }
-    public WeekSchedule(String filename){
+    public WeekSchedule uploadToNewFile(WorkWithXML xml_new){
+        WeekSchedule newSchedule = new WeekSchedule();
+        try{
+            xml_new.createXmlDocument(days);
+            newSchedule.loadFromFile(xml_new);
+            //newSchedule.printSchedule();
+        } catch(ParserConfigurationException pce){
+            pce.printStackTrace();
+        } catch(TransformerException tre){
+            tre.printStackTrace();
+        }
+        return newSchedule;
+    }
+    public WeekSchedule(){
         days = new ArrayList<>();
-        sourceFileName = filename;
-        loadFromFile();
     }
     public void printSchedule(){
         int countOfWeekDays = days.size();
