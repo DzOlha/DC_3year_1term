@@ -1,5 +1,6 @@
-package lab_7_1;
+package lab_7_1.xml;
 
+import lab_7_1.DBMS.WeekScheduleDatabase;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import javax.xml.parsers.ParserConfigurationException;
@@ -48,6 +49,25 @@ public class WeekSchedule {
             tre.printStackTrace();
         }
         return newSchedule;
+    }
+    public void uploadToDatabase() throws Exception {
+        WeekScheduleDatabase db = new WeekScheduleDatabase("week_schedule", "localhost", 3306);
+        int countOfWeekDays = days.size();
+        int countOfLessons = 0;
+        WeekDay tmpDay = null;
+        Lesson tmpLesson = null;
+        for(int i = 0; i < countOfWeekDays; i++)
+        {
+            tmpDay = days.get(i);
+            db.addDay(tmpDay.code, tmpDay.name);
+
+            countOfLessons = tmpDay.lessons.size();
+            for(int j = 0; j < countOfLessons; j++)
+            {
+                tmpLesson = tmpDay.lessons.get(j);
+                db.addLessonToTheDay(tmpLesson.code, tmpLesson.name, tmpLesson.isLec, tmpDay.code, tmpDay.name);
+            }
+        }
     }
     public WeekSchedule(){
         days = new ArrayList<>();

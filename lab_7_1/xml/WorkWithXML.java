@@ -1,5 +1,6 @@
-package lab_7_1;
+package lab_7_1.xml;
 
+import lab_7_1.xml.CustomErrorHandler;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;

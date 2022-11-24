@@ -1,4 +1,4 @@
-package lab_7_1;
+package lab_7_1.xml;
 
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
