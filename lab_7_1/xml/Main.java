@@ -6,7 +6,7 @@ public class Main {
         String filenamePathXML = "lab_7_1/xml/WeekSchedule.xml";
         String filenamePathXSD = "lab_7_1/xml/WeekSchedule.xsd";
 
-        String testXML = "lab_7_1/xml/test.xml";
+        String testXML = "lab_7_1/xml/OutputXML.xml";
         WorkWithXML ws = new WorkWithXML(testXML);
         WorkWithXML xml = new WorkWithXML(filenamePathXML, filenamePathXSD);
 
@@ -18,6 +18,7 @@ public class Main {
         }catch (Exception ex){
             ex.printStackTrace();
         }
+        schedule.uploadToNewFile(ws);
         //schedule.uploadToNewFile(ws);
         //schedule.printSchedule();
     }

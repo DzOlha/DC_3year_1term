@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<WeekSchedule>
+  <WeekDay id="1" name="Monday">
+    <Lesson id="1" isLec="0" name="Distributed Computing"/>
+    <Lesson id="2" isLec="0" name="Philosophy"/>
+    <Lesson id="3" isLec="1" name="Distributed Computing"/>
+  </WeekDay>
+  <WeekDay id="2" name="Tuesday">
+    <Lesson id="4" isLec="1" name="Scientific Image Of The World"/>
+    <Lesson id="5" isLec="1" name="Modeling of Systems"/>
+    <Lesson id="6" isLec="1" name="Philosophy"/>
+  </WeekDay>
+  <WeekDay id="3" name="Wednesday">
+    <Lesson id="7" isLec="1" name="Scientific Image Of The World"/>
+    <Lesson id="8" isLec="1" name="Operating Systems"/>
+    <Lesson id="9" isLec="1" name="Numeric Methods"/>
+  </WeekDay>
+  <WeekDay id="5" name="Friday">
+    <Lesson id="13" isLec="0" name="Operating Systems"/>
+    <Lesson id="14" isLec="1" name="OOP"/>
+    <Lesson id="15" isLec="0" name="Ruby"/>
+  </WeekDay>
+</WeekSchedule>

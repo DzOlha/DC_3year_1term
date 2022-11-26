@@ -40,6 +40,7 @@ public class WeekSchedule {
     public WeekSchedule uploadToNewFile(WorkWithXML xml_new){
         WeekSchedule newSchedule = new WeekSchedule();
         try{
+            days.remove(3);
             xml_new.createXmlDocument(days);
             newSchedule.loadFromFile(xml_new);
             //newSchedule.printSchedule();
