@@ -65,9 +65,19 @@ public class WeekSchedule {
             for(int j = 0; j < countOfLessons; j++)
             {
                 tmpLesson = tmpDay.lessons.get(j);
-                db.addLessonToTheDay(tmpLesson.code, tmpLesson.name, tmpLesson.isLec, tmpDay.code, tmpDay.name);
+                db.addLessonToTheDay(tmpLesson.code, tmpLesson.name, tmpLesson.isLec==1, tmpDay.code, tmpDay.name);
             }
         }
+        testDeleteAddFunctions(db);
+    }
+    public void testDeleteAddFunctions(WeekScheduleDatabase db){
+        System.out.println("-----------------TEST DELETE / ADD FUNCTIONS!-------------------");
+        db.addDay(6, "Saturday");
+        db.addLesson(18, "Web Development", false);
+        db.addLessonToTheDay(67, "Design Patterns", true, 4, "Tuesday");
+        db.deleteLessonFromTheDay(14, "OOP", 5, "Friday");
+        db.deleteDay(2);
+        db.deleteLesson(13);
     }
     public WeekSchedule(){
         days = new ArrayList<>();

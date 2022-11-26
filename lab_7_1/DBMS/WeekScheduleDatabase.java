@@ -27,8 +27,8 @@ public class WeekScheduleDatabase {
     private final Connection con;
     private final Statement stmt;
     public WeekScheduleDatabase(String DBName, String ip, int port) throws Exception {
-        Class.forName("com.mysql.jdbc.Driver");
-        String url = "jdbc: mysql: //" + ip + ":" + port + "/" + DBName;
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        String url = "jdbc:mysql://" + ip + ":" + port + "/" + DBName;
         con = DriverManager.getConnection(url, "root", "justSOW18!!!");
         stmt = con.createStatement();
     }
@@ -57,10 +57,10 @@ public class WeekScheduleDatabase {
                 "VALUES (" + id + ", '" + name + "')";
         try {
             stmt.executeUpdate(sql);
-            System.out.println("День " + name + "Успішно додано!");
+            System.out.println("День " + name + " Успішно додано!");
             return true;
         } catch (SQLException e) {
-            System.out.println("ПОМИЛКА! День " + name + "не додано !");
+            System.out.println("ПОМИЛКА! День " + name + " не додано !");
             System.out.println(" >> " + e.getMessage());
             return false;
         }
@@ -70,12 +70,12 @@ public class WeekScheduleDatabase {
         try {
             int c = stmt.executeUpdate(sql);
             if (c > 0) {
-                System.out.println("День з ідентифікатором"
-                        + id + "успішно видалено!");
+                System.out.println("День з ідентифікатором "
+                        + id + " успішно видалено!");
                 return true;
             } else {
-                System.out.println("День з ідентифікатором"
-                        + id + "не знайдено!");
+                System.out.println("День з ідентифікатором "
+                        + id + " не знайдено!");
 
                 return false;
             }
@@ -85,15 +85,15 @@ public class WeekScheduleDatabase {
             return false;
         }
     }
-    public boolean addLesson(int id, String name, int isLec){
+    public boolean addLesson(int id, String name, boolean isLec){
         String sql = "INSERT INTO LESSONS (ID, NAME, IS_LEC) " +
-                "VALUES (" + id + ", " + name + ", " + isLec + ")";
+                "VALUES (" + id + ", '" + name + "', " + isLec + ")";
         try {
             stmt.executeUpdate(sql);
-            System.out.println("Заняття " + name + "Успішно додано!");
+            System.out.println("Заняття " + name + " Успішно додано!");
             return true;
         } catch (SQLException e) {
-            System.out.println("ПОМИЛКА! Заняття " + name + "не додано !");
+            System.out.println("ПОМИЛКА! Заняття " + name + " не додано !");
             System.out.println(" >> " + e.getMessage());
             return false;
         }
@@ -103,12 +103,12 @@ public class WeekScheduleDatabase {
         try {
             int c = stmt.executeUpdate(sql);
             if (c > 0) {
-                System.out.println("Заняття з ідентифікатором"
-                        + lesson_id + "успішно видалено!");
+                System.out.println("Заняття з ідентифікатором "
+                        + lesson_id + " успішно видалено!");
                 return true;
             } else {
-                System.out.println("Заняття з ідентифікатором"
-                        + lesson_id + "не знайдено!");
+                System.out.println("Заняття з ідентифікатором "
+                        + lesson_id + " не знайдено!");
 
                 return false;
             }
@@ -118,40 +118,40 @@ public class WeekScheduleDatabase {
             return false;
         }
     }
-    public boolean addLessonToTheDay(int lesson_id, String lessonName, int isLec, int day_id, String dayName) {
+    public boolean addLessonToTheDay(int lesson_id, String lessonName, boolean isLec, int day_id, String dayName) {
         boolean addlessonSuccessfully = addLesson(lesson_id, lessonName, isLec);
         if(addlessonSuccessfully == false){
-            System.out.println("ПОМИЛКА при додаванні зяняття " + lessonName + "у відповідну таблицю -> неможливе додавання до розкладу!");
+            System.out.println("ПОМИЛКА при додаванні зяняття " + lessonName + " у відповідну таблицю -> неможливе додавання до розкладу!");
             return false;
         }
         String sql = "INSERT INTO LESSONS_OF_DAY (ID_DAY, ID_LESSON) " +
                 "VALUES (" + day_id + ", " + lesson_id + ")";
         try {
             stmt.executeUpdate(sql);
-            System.out.println("Заняття " + lessonName + "Успішно додано до розкладу дня " + dayName);
+            System.out.println("Заняття " + lessonName + " Успішно додано до розкладу дня " + dayName);
             return true;
         } catch (SQLException e) {
-            System.out.println("ПОМИЛКА! Заняття " + lessonName + "не додано до розкладу дня " + dayName);
+            System.out.println("ПОМИЛКА! Заняття " + lessonName + " не додано до розкладу дня " + dayName);
             System.out.println(" >> " + e.getMessage());
             return false;
         }
     }
     public boolean deleteLessonFromTheDay(int lesson_id, String lessonName, int day_id, String dayName){
-        String sql = "DELETE FROM LESSONS_OF_DAY WHERE ID_DAY =" + day_id + "AND ID_LESSON =" + lesson_id;
+        String sql = "DELETE FROM LESSONS_OF_DAY WHERE ID_DAY =" + day_id + " AND ID_LESSON =" + lesson_id;
         try {
             int c = stmt.executeUpdate(sql);
             if (c > 0) {
-                System.out.println("Заняття з ідентифікатором"
-                        + lesson_id + "(" + lessonName + ") " + "успішно видалено з розкладу дня " + dayName);
+                System.out.println("Заняття з ідентифікатором "
+                        + lesson_id + "(" + lessonName + ") " + " успішно видалено з розкладу дня " + dayName);
                 return true;
             } else {
-                System.out.println("Заняття з ідентифікатором"
-                        + lesson_id + "(" + lessonName + ") " + "не знайдено в розкладі дня " + dayName);
+                System.out.println("Заняття з ідентифікатором "
+                        + lesson_id + "(" + lessonName + ") " + " не знайдено в розкладі дня " + dayName);
 
                 return false;
             }
         } catch (SQLException e) {
-            System.out.println("ПОМИЛКА при видаленні заняття з ідентифікатором " + lesson_id + "(" + lessonName + ")" + "з розкладу дня " + dayName);
+            System.out.println("ПОМИЛКА при видаленні заняття з ідентифікатором " + lesson_id + "(" + lessonName + ")" + " з розкладу дня " + dayName);
             System.out.println(" >> " + e.getMessage());
             return false;
         }
