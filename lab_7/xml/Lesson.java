@@ -1,4 +1,4 @@
-package lab_7_1.xml;
+package lab_7.xml;
 
 public class Lesson {
     public final Integer code;

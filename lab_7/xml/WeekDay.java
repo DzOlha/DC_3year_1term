@@ -1,6 +1,4 @@
-package lab_7_1.xml;
-
-import lab_7_1.xml.Lesson;
+package lab_7.xml;
 
 import java.util.ArrayList;
 

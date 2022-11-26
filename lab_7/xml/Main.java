@@ -1,12 +1,12 @@
-package lab_7_1.xml;
+package lab_7.xml;
 
 public class Main {
     public static void main(String[] args)
     {
-        String filenamePathXML = "lab_7_1/xml/WeekSchedule.xml";
-        String filenamePathXSD = "lab_7_1/xml/WeekSchedule.xsd";
+        String filenamePathXML = "lab_7/xml/WeekSchedule.xml";
+        String filenamePathXSD = "lab_7/xml/WeekSchedule.xsd";
 
-        String testXML = "lab_7_1/xml/OutputXML.xml";
+        String testXML = "lab_7/xml/OutputXML.xml";
         WorkWithXML ws = new WorkWithXML(testXML);
         WorkWithXML xml = new WorkWithXML(filenamePathXML, filenamePathXSD);
 

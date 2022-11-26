@@ -1,4 +1,4 @@
-package lab_7_1.DBMS;
+package lab_7.DBMS;
 import java.sql. *;
 /**
  * DESCRIPTION OF THE DATABASE

@@ -1,6 +1,6 @@
-package lab_7_1.xml;
+package lab_7.xml;
 
-import lab_7_1.DBMS.WeekScheduleDatabase;
+import lab_7.DBMS.WeekScheduleDatabase;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import javax.xml.parsers.ParserConfigurationException;
